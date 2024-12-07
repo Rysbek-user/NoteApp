@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".ui.fragments.onboard.OnBoardPagingFragment">
+
+    <TextView
+        android:id="@+id/notes"
+        android:layout_marginTop="76dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginBottom="32dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nurnub"
+        android:text="Notes"
+        android:textColor="@color/white"
+        android:textSize="24sp" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/notes"
+        android:id="@+id/animationView"
+        app:lottie_url="REPLACE_JSON_URL"
+        app:lottie_rawRes="@raw/nubnur"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        android:layout_width="287dp"
+        android:layout_height="264dp"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_marginTop="46dp"
+        android:layout_marginBottom="234dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/animationView"
+        android:id="@+id/container"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_width="280dp"
+        android:layout_height="125dp">
+
+        <TextView
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/txt_title"
+            android:textSize="28sp"
+            android:textColor="@color/white"
+            android:text="Удобство"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_title"
+            android:id="@+id/txt_body"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp"
+            android:textColor="#CFCFCF"
+            android:textAlignment="center"
+            android:text="Создавайте заметки в два клика! Записывайте мысли, идеи и важные задачи мгновенно."
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/elipse1"
+        android:background="@drawable/elipse"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="175dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/elipse2"
+        android:layout_width="12dp"
+        android:layout_height="12dp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/elipse2"
+        android:background="@drawable/elipse"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_marginBottom="175dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/elipse3"
+        android:background="@drawable/elipse"
+        android:layout_marginStart="6dp"
+        android:layout_marginBottom="175dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/elipse2"
+        android:layout_width="12dp"
+        android:layout_height="12dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
