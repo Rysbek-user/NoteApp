@@ -25,6 +25,20 @@
         android:layout_marginEnd="16dp"
         android:text="Пропустить"/>
 
+    <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+        android:layout_width="wrap_content"
+        android:layout_marginTop="400dp"
+        android:id="@+id/dots1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:dotsColor="@android:color/darker_gray"
+        app:selectedDotColor="@color/orange"
+        app:dotsSize="12dp"
+        app:dotsSpacing="6dp"
+        app:dotsClickable="true"
+        android:layout_height="wrap_content"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_start"

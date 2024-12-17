@@ -74,34 +74,4 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/elipse1"
-        android:background="@drawable/elipse"
-        android:layout_marginEnd="6dp"
-        android:layout_marginBottom="175dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/elipse2"
-        android:layout_width="12dp"
-        android:layout_height="12dp" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/elipse2"
-        android:background="@drawable/elipse"
-        android:layout_width="12dp"
-        android:layout_height="12dp"
-        android:layout_marginBottom="175dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/elipse3"
-        android:background="@drawable/elipse"
-        android:layout_marginStart="6dp"
-        android:layout_marginBottom="175dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/elipse2"
-        android:layout_width="12dp"
-        android:layout_height="12dp" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -53,4 +53,6 @@ dependencies {
     implementation(libs.androidx.navigation.ui)
     //animation
     implementation (libs.lottie)
+    //dots indicator
+    implementation(libs.dotsindicator)
 }
