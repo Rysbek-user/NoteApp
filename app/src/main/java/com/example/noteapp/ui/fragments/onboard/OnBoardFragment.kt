@@ -23,14 +23,14 @@ class OnBoardFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        sharedPreferences = PreferenceHelper()
+        sharedPreferences.unit(requireContext())
         binding = FragmentOnBoardBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        sharedPreferences = PreferenceHelper()
-        sharedPreferences.unit(requireContext())
 
         if (sharedPreferences.isOnBoardShown) {
             findNavController().navigate(R.id.action_onBoardFragment_to_noteFragment)
@@ -39,7 +39,6 @@ class OnBoardFragment : Fragment() {
             setupListeners()
         }
     }
-
 
     private fun initialize() {
         binding.viewpager2.adapter = OnBoardViewpagerAdapter(this)
