@@ -20,6 +20,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="13dp"/>
+
     <ImageView
         android:layout_marginStart="16dp"
         app:layout_constraintTop_toTopOf="@id/text1"
@@ -27,6 +28,7 @@
         android:layout_width="40dp"
         android:layout_height="35dp"
         android:src="@drawable/poisk" />
+
     <ImageView
         android:layout_marginEnd="16dp"
         android:layout_width="30dp"
@@ -34,6 +36,7 @@
         android:src="@drawable/kvadratiki"
         app:layout_constraintTop_toTopOf="@id/text1"
         app:layout_constraintEnd_toEndOf="parent"    />
+
     <EditText
         android:id="@+id/et_search"
         android:layout_width="360dp"
@@ -46,6 +49,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="95dp" />
+
     <ImageView
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/et_search"
@@ -54,7 +58,9 @@
         android:src="@drawable/vazelin"
         android:layout_marginStart="30dp"
         android:layout_marginTop="12dp" />
+
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnAction"
         android:layout_width="80dp"
         android:layout_height="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -67,6 +73,16 @@
         android:layout_marginEnd="27dp"
         android:background="@drawable/btn_background"/>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/rv_note"
+        app:layout_constraintTop_toBottomOf="@id/et_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
