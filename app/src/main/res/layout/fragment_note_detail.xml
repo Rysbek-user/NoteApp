@@ -1,46 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#252525"
     android:orientation="vertical"
     android:padding="16dp"
     android:layout_height="match_parent"
     tools:context=".ui.fragments.note.NoteDetailFragment">
 
-    <FrameLayout
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </FrameLayout>
-
     <EditText
-        android:id="@+id/et_title"
-        android:layout_marginTop="16dp"
-        android:textColor="@color/white"
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:hint="Title"
         android:textStyle="bold"
+        android:layout_marginTop="70dp"
         android:textSize="24sp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:textColorHint="@color/white"
+        android:padding="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@android:color/transparent"
+        android:textColor="@android:color/white"/>
 
     <EditText
-        android:id="@+id/et_description"
-        android:layout_marginTop="12dp"
+        android:id="@+id/tv_description"
         android:layout_width="match_parent"
+        android:layout_height="402dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_title"
+        android:layout_marginBottom="60dp"
+        android:textColor="@android:color/white"
+        android:background="@android:color/transparent"
+        android:hint="Text"
+        android:gravity="top"
+        android:padding="8dp"
+        android:textColorHint="@color/white"
+        android:textSize="16sp" />
+
+    <ImageView
+        android:id="@+id/iv_back"
+        app:layout_constraintStart_toStartOf="@id/tv_title"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:textSize="12sp"
-        android:textStyle="bold" />
+        android:src="@drawable/vaselin_arrow_back"/>
+
+
 
     <TextView
-        android:layout_marginTop="50dp"
-        android:id="@+id/txt_save"
+        android:id="@+id/tv_save"
+        app:layout_constraintTop_toTopOf="@id/iv_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Готово"
         android:textColor="#D88B02"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+        android:textSize="18sp"
+        />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/tvDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="19 декабря 5:25"
+        app:layout_constraintTop_toTopOf="@id/iv_back"
+        app:layout_constraintStart_toEndOf="@id/iv_back"
+        android:layout_marginStart="10dp"
+        android:textColor="@color/white"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

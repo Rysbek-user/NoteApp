@@ -1,27 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="75dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <TextView
-        android:id="@+id/txt_description_note"
-        android:textColor="@color/white"
-        android:textSize="12sp"
-        android:layout_marginTop="2dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txt_title_note"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="12dp"
+    android:background="@drawable/item_bg"
+    android:layout_height="100dp">
 
     <TextView
         android:id="@+id/txt_title_note"
-        android:textColor="@color/white"
+        android:layout_width="370dp"
+        android:layout_height="22dp"
+        android:text="План на жизнь:"
+        android:textSize="18sp"
         android:textStyle="bold"
-        android:textSize="24sp"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="12dp"/>
+
+    <TextView
+        android:id="@+id/txt_description_note"
+        android:layout_width="370dp"
+        android:layout_height="20dp"
+        android:textSize="16dp"
+        android:text="Посадить сына, вырастить дом, построить дерево. Нужно..."
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_title_note"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        />
+
+    <TextView
+        android:id="@+id/tvData"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:text="19 декабря 5:25"
+        android:textColor="#434343"
+        app:layout_constraintStart_toStartOf="@id/txt_title_note"
+        app:layout_constraintTop_toBottomOf="@id/txt_description_note"
+        android:layout_marginTop="8dp"
+        android:textSize="14sp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

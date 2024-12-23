@@ -26,9 +26,9 @@ class NoteDetailFragment : Fragment() {
     }
 
     private fun setupListeners() = with(binding) {
-        txtSave.setOnClickListener {
-            val title = etTitle.text.toString()
-            val description = etDescription.text.toString()
+        tvSave.setOnClickListener {
+            val title = tvTitle.text.toString()
+            val description = tvDescription.text.toString()
             App.appDatabase?.noteDao()?.insertNote(NoteModel(description, title))
             findNavController().navigateUp()
         }
