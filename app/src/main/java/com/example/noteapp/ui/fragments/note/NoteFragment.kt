@@ -1,6 +1,8 @@
 package com.example.noteapp.ui.fragments.note
 
+import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,14 +11,16 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.noteapp.App
 import com.example.noteapp.R
+import com.example.noteapp.data.models.NoteModel
 import com.example.noteapp.databinding.FragmentNoteBinding
 import com.example.noteapp.databinding.FragmentOnBoardBinding
 import com.example.noteapp.ui.adapters.NoteAdapter
+import com.example.noteapp.ui.interfaces.OnClickItem
 
-class NoteFragment : Fragment() {
+class NoteFragment : Fragment(), OnClickItem {
 
     private lateinit var binding: FragmentNoteBinding
-    private val noteAdapter = NoteAdapter()
+    private val noteAdapter = NoteAdapter(this, this)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,8 +50,29 @@ class NoteFragment : Fragment() {
         }
     }
     private fun getData() {
-        App.appDatabase?.noteDao()?.getAll()?.observe(viewLifecycleOwner) {model ->
-            noteAdapter.submitList(model)
+        App.appDatabase?.noteDao()?.getAll()?.observe(viewLifecycleOwner) { listNote ->
+            noteAdapter.submitList(listNote)
         }
+    }
+
+    override fun onLongClick(noteModel: NoteModel) {
+        val builder = AlertDialog.Builder(requireContext())
+        with(builder){
+            setTitle("Удалить заметку")
+            setPositiveButton("Удалить") { dialog , _ ->
+                App.appDatabase?.noteDao()?.noteDelete(noteModel)
+            }
+            setNegativeButton("Отмена") { dialog , _ ->
+                dialog.cancel()
+            }
+            show()
+        }
+        builder.create()
+    }
+
+    override fun onClick(noteModel: NoteModel) {
+        Log.e("ololo", "onClick: working note:$noteModel ", )
+        val action =  NoteFragmentDirections.actionNoteFragmentToNoteDetailFragment(noteModel.id)
+        findNavController().navigate(action)
     }
 }
