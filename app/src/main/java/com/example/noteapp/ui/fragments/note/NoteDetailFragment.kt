@@ -22,18 +22,43 @@ import java.util.Date
 class NoteDetailFragment : Fragment() {
 
     private lateinit var binding: FragmentNoteDetailBinding
-    private var noteId: Int = -1
-    private  var  color: Int = R.color.yellow
+    private var noteId: Int? = null
+    private  var  color: Int? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+                              savedInstanceState: Bundle?): View{
         binding = FragmentNoteDetailBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.run {
-            tvTitle.addTextChangedListener(object : TextWatcher{
+        binding.tvDate.text = getCurrentTime()
+        if (binding.tvTitle.text != null && binding.tvDescription.text != null){
+            binding.tvSave.visibility = View.VISIBLE
+        }
+        updateNote()
+        setupListener()
+    }
+
+    private fun updateNote() {
+        arguments?.let { args ->
+            noteId = args.getInt("noteId", -1)
+        }
+        if (noteId != -1) {
+            val note = App.appDatabase?.noteDao()?.getById(noteId!!)
+            note?.let { item ->
+                binding.tvTitle.setText(item.title)
+                binding.tvDescription.setText(item.description)
+                binding.tvDate.text = item.date
+            }
+        }
+    }
+
+    private fun setupListener() = with(binding) {
+        ivImg.setOnClickListener {
+            showColorDialog()
+        }
+                    tvTitle.addTextChangedListener(object : TextWatcher{
                 override fun beforeTextChanged(
                     s: CharSequence?,
                     start: Int,
@@ -95,70 +120,21 @@ class NoteDetailFragment : Fragment() {
                 }
 
             })
-
-            ivBack.setOnClickListener{
-                findNavController().navigateUp()
-            }
+        ivBack.setOnClickListener {
+            findNavController().navigateUp()
         }
-
-
-
-        arguments?.let{args ->
-            noteId = args.getInt("noteId", -1)
-        }
-        if(noteId != -1){
-            val id = App.appDatabase?.noteDao()?.getById(noteId)
-            id?.let {item ->
-                binding.tvTitle.setText(item.title)
-                binding.tvDescription.setText(item.description)
-                binding.tvDate.text = item.date
-            }
-        }
-        binding.tvSave.setOnClickListener{
-            if (noteId!=-1) {
-                updateNote()
-            }else{
-                saveNote()
-            }
-        }
-        setupListeners()
-    }
-
-    private fun saveNote() {
-        val  note = NoteModel(
-            title = binding.tvTitle.text.toString(),
-            description = binding.tvDescription.text.toString(),
-            date = getCurrentTime(),
-            color = color
-        )
-        App.appDatabase?.noteDao()?.insertNote(note)
-    }
-
-    private fun updateNote() {
-        val  note = NoteModel(
-            title = binding.tvTitle.text.toString(),
-            description = binding.tvDescription.text.toString(),
-            date = getCurrentTime(),
-            color = color
-        )
-        note.id = noteId
-        App.appDatabase?.noteDao()?.noteUpdate(note)
-
-    }
-
-    private fun setupListeners() = with(binding) {
-        ivImg.setOnClickListener {    Log.d("loh", "ivColor click")
-            showColorDialog()}
         tvSave.setOnClickListener {
             val title = tvTitle.text.toString()
             val text = tvDescription.text.toString()
-            val date = getCurrentTime()
-            if (noteId != -1) {
-                val updateNote = NoteModel(title, text, date, color.hashCode() )
-                updateNote.id = noteId
+            val data = tvDate.text.toString()
+            val color = color
+            if (noteId != -1){
+                val updateNote = NoteModel(title, text, data, color.hashCode())
+                updateNote.id = noteId!!
                 App.appDatabase?.noteDao()?.noteUpdate(updateNote)
-            } else {
-                App.appDatabase?.noteDao()?.insertNote(NoteModel(text, title, date, color.hashCode()))
+
+            } else{
+                App.appDatabase?.noteDao()?.insertNote(NoteModel(title, text, data, color.hashCode()))
             }
             findNavController().navigateUp()
         }
@@ -169,25 +145,42 @@ class NoteDetailFragment : Fragment() {
         val inflater = layoutInflater
         val dialogView = inflater.inflate(R.layout.picked, null)
         builder.setView(dialogView)
+
         val dialog = builder.create()
-        dialogView.findViewById<View>(R.id.color_yellow).setOnClickListener {        color = R.color.yellow
-            dialog.dismiss()    }
-        dialogView.findViewById<View>(R.id.color_purple).setOnClickListener {        color =  R.color.purple
-            dialog.dismiss()    }
-        dialogView.findViewById<View>(R.id.color_pink).setOnClickListener {        color =R.color.pink
-            dialog.dismiss()    }
-        dialogView.findViewById<View>(R.id.color_red).setOnClickListener {        color =  R.color.red
-            dialog.dismiss()    }
-        dialogView.findViewById<View>(R.id.color_green).setOnClickListener {        color =  R.color.green
-            dialog.dismiss()    }
-        dialogView.findViewById<View>(R.id.color_blue).setOnClickListener {        color =  R.color.blue
-            dialog.dismiss()    }
+
+        dialogView.findViewById<View>(R.id.color_yellow).setOnClickListener {
+            color = ContextCompat.getColor(requireContext(), R.color.yellow)
+            dialog.dismiss()
+        }
+        dialogView.findViewById<View>(R.id.color_purple).setOnClickListener {
+            color = ContextCompat.getColor(requireContext(), R.color.purple)
+            dialog.dismiss()
+        }
+        dialogView.findViewById<View>(R.id.color_pink).setOnClickListener {
+            color = ContextCompat.getColor(requireContext(), R.color.pink)
+            dialog.dismiss()
+        }
+        dialogView.findViewById<View>(R.id.color_red).setOnClickListener {
+            color = ContextCompat.getColor(requireContext(), R.color.red)
+            dialog.dismiss()
+        }
+        dialogView.findViewById<View>(R.id.color_green).setOnClickListener {
+            color = ContextCompat.getColor(requireContext(), R.color.green)
+            dialog.dismiss()
+        }
+        dialogView.findViewById<View>(R.id.color_blue).setOnClickListener {
+            color = ContextCompat.getColor(requireContext(), R.color.blue)
+            dialog.dismiss()
+        }
         dialog.show()
+
         val window = dialog.window
         val layoutParams = window?.attributes
+
         layoutParams?.gravity = Gravity.END or Gravity.TOP
-        layoutParams?.x = 100
-        layoutParams?.y = 100
+        layoutParams?.x = 50
+        layoutParams?.y = 200
+
         window?.attributes = layoutParams
     }
 

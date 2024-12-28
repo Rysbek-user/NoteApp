@@ -11,14 +11,9 @@
         android:label="fragment_on_board"
         tools:layout="@layout/fragment_on_board" >
         <action
-            android:id="@+id/action_onBoardFragment_to_noteFragment"
-            app:destination="@id/noteFragment" />
+            android:id="@+id/action_onBoardFragment_to_singinFragment"
+            app:destination="@id/singinFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/onBoardPagingFragment"
-        android:name="com.example.noteapp.ui.fragments.onboard.OnBoardPagingFragment"
-        android:label="fragment_on_board_paging"
-        tools:layout="@layout/fragment_on_board_paging" />
     <fragment
         android:id="@+id/noteFragment"
         android:name="com.example.noteapp.ui.fragments.note.NoteFragment"
@@ -36,5 +31,14 @@
         <argument
             android:name="noteId"
             app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/singinFragment"
+        android:name="com.example.noteapp.ui.fragments.singin.SingInFragment"
+        android:label="fragment_singin"
+        tools:layout="@layout/fragment_singin" >
+        <action
+            android:id="@+id/action_singinFragment_to_noteFragment"
+            app:destination="@id/noteFragment" />
     </fragment>
 </navigation>

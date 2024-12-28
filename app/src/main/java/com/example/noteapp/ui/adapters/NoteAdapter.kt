@@ -24,8 +24,8 @@ class NoteAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position))
-holder.itemView.setOnClickListener{
-    onClick.onClick(getItem(position))
+        holder.itemView.setOnClickListener{
+        onClick.onClick(getItem(position))
 }
         holder.itemView.setOnLongClickListener {
             onLongClick.onLongClick(getItem(position))
