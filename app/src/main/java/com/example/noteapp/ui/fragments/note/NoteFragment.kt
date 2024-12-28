@@ -25,7 +25,7 @@ class NoteFragment : Fragment(), OnClickItem {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentNoteBinding.inflate(inflater, container, false)
         return binding.root
     }

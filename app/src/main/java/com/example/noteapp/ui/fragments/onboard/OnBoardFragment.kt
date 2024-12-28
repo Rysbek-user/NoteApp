@@ -1,11 +1,9 @@
 package com.example.noteapp.ui.fragments.onboard
 
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
@@ -22,7 +20,7 @@ class OnBoardFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         sharedPreferences = PreferenceHelper()
         sharedPreferences.unit(requireContext())
         binding = FragmentOnBoardBinding.inflate(inflater, container, false)
@@ -32,9 +30,9 @@ class OnBoardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (sharedPreferences.isOnBoardShown) {
-            findNavController().navigate(R.id.action_onBoardFragment_to_noteFragment)
-        }else{
+        if (sharedPreferences.isOnBoardingCompleted(true)) {
+            findNavController().navigate(R.id.action_onBoardFragment_to_singinFragment)
+        } else {
             initialize()
             setupListeners()
         }
@@ -64,8 +62,8 @@ class OnBoardFragment : Fragment() {
             }
         })
         binding.btnStart.setOnClickListener{
-            sharedPreferences.isOnBoardShown = true
-            findNavController().navigate(R.id.action_onBoardFragment_to_noteFragment)
+            sharedPreferences.isOnBoardingCompleted(true)
+            findNavController().navigate(R.id.action_onBoardFragment_to_singinFragment)
             }
         }
     }
